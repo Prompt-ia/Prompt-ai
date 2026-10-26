@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080808">
+  <title>PromptAI — Gerador de Prompts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">P<span>AI</span></div>
+    <div>
+      <h1>PromptAI</h1>
+      <p>Seu estúdio de prompts hiper-realistas</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="eyebrow">CRIATIVIDADE • DETALHE • REALISMO</p>
+      <h2>Transforme sua ideia em um <span>prompt extraordinário.</span></h2>
+      <p>Escolha as referências e personalize cada detalhe. O PromptAI monta um prompt em inglês, pronto para copiar e usar no gerador de imagens de sua preferência.</p>
+    </section>
+
+    <form id="promptForm">
+      <section class="panel">
+        <div class="section-heading"><span class="number">01</span><div><h3>Tipo de criação</h3><p>Escolha como as referências serão usadas.</p></div></div>
+        <div class="field-grid">
+          <label>Tipo de imagem
+            <select id="creationType">
+              <option value="single">Uma pessoa / personagem</option>
+              <option value="couple">Casal</option>
+              <option value="family">Família</option>
+              <option value="group">Grupo de pessoas</option>
+              <option value="composition">Colocar a pessoa da primeira foto na segunda foto</option>
+            </select>
+          </label>
+          <label>Perfil principal
+            <select id="profile">
+              <option value="masculine">Masculino</option>
+              <option value="feminine">Feminino</option>
+              <option value="child">Criança</option>
+              <option value="mixed">Perfis variados / grupo</option>
+              <option value="other">Outro</option>
+            </select>
+          </label>
+        </div>
+        <label>O que deve acontecer na imagem?
+          <textarea id="idea" rows="2" placeholder="Ex.: casal chegando a uma festa elegante, olhando para a câmera..."></textarea>
+        </label>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="number">02</span><div><h3>Fotos de referência</h3><p>Adicione várias fotos e identifique cada pessoa.</p></div></div>
+        <label class="upload-box" for="referencePhotos">
+          <span class="upload-icon">＋</span>
+          <strong>Selecionar fotos</strong>
+          <span>Você pode selecionar várias imagens de uma vez.</span>
+          <input id="referencePhotos" type="file" accept="image/*" multiple>
+        </label>
+        <p class="hint">As imagens são pré-visualizadas neste navegador. Este site não analisa automaticamente os rostos nem envia as fotos para uma IA.</p>
+        <div id="previewGrid" class="preview-grid"></div>
+        <div class="field-grid">
+          <label>Como usar as referências
+            <select id="referenceMode">
+              <option value="identity">Preservar a identidade de cada pessoa</option>
+              <option value="style">Usar como referência de estilo e aparência</option>
+              <option value="composition">Usar a primeira foto como pessoa e a segunda como cenário/composição</option>
+            </select>
+          </label>
+          <label>Prioridade
+            <select id="identityStrength">
+              <option value="strict">Máxima fidelidade às referências</option>
+              <option value="balanced">Fidelidade com adaptação natural à cena</option>
+              <option value="inspired">Apenas inspiração visual</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="number">03</span><div><h3>Roupa e aparência</h3><p>Personalize o visual sem perder o aspecto natural.</p></div></div>
+        <div class="field-grid">
+          <label>Categoria de roupa
+            <select id="clothing">
+              <option value="elegant casual outfit">Casual elegante</option>
+              <option value="luxury formal suit or evening dress">Terno / roupa de gala</option>
+              <option value="football team jersey">Camisa de time de futebol</option>
+              <option value="basketball jersey and athletic shorts">Uniforme de basquete</option>
+              <option value="American football uniform">Uniforme de futebol americano</option>
+              <option value="esports team jersey">Camisa de esports</option>
+              <option value="streetwear outfit with sneakers">Streetwear</option>
+              <option value="black gothic outfit with dark accessories">Gótico</option>
+              <option value="hoodie and casual jacket">Moletom / jaqueta</option>
+              <option value="biker jacket and motorcycle-inspired clothing">Motociclismo</option>
+              <option value="military-inspired tactical clothing">Tático / militar inspirado</option>
+              <option value="fitness or gym clothing">Academia / fitness</option>
+              <option value="beachwear and shorts">Praia / bermuda</option>
+              <option value="swimwear">Maiô / roupa de banho</option>
+              <option value="bikini">Biquíni</option>
+              <option value="shirtless upper body with shorts">Sem camisa e de bermuda</option>
+              <option value="school-appropriate everyday clothing">Roupa infantil / escolar</option>
+              <option value="custom outfit described by the user">Outra roupa (descrever abaixo)</option>
+            </select>
+          </label>
+          <label>Tipo de corpo
+            <select id="bodyType">
+              <option value="natural realistic body proportions">Natural / proporções realistas</option>
+              <option value="athletic body type">Atlético</option>
+              <option value="fit and visibly defined physique">Definido</option>
+              <option value="muscular physique with realistic anatomy">Musculoso</option>
+              <option value="plus-size body with natural proportions">Plus size</option>
+              <option value="curvy body with natural realistic proportions">Curvilíneo</option>
+              <option value="petite body with natural proportions">Pequeno / delicado</option>
+              <option value="childlike natural body proportions, age-appropriate">Proporções naturais de criança</option>
+            </select>
+          </label>
+          <label>País do time (opcional)
+            <select id="teamCountry">
+              <option value="">Não se aplica / escolher livremente</option>
+              <option value="Brazil">Brasil</option><option value="France">França</option>
+              <option value="Spain">Espanha</option><option value="England">Inglaterra</option>
+              <option value="Portugal">Portugal</option><option value="Argentina">Argentina</option>
+              <option value="United States">Estados Unidos</option><option value="Germany">Alemanha</option>
+              <option value="Italy">Itália</option><option value="Other country">Outro país</option>
+            </select>
+          </label>
+          <label>Time / nome na camisa
+            <input id="teamName" type="text" placeholder="Ex.: São Paulo FC, PSG, Barcelona">
+          </label>
+          <label>Detalhes da camisa
+            <input id="jerseyDetails" type="text" placeholder="Ex.: camisa preta, número 10, nome MALU nas costas">
+          </label>
+          <label>Roupa personalizada
+            <input id="customClothing" type="text" placeholder="Descreva cores, tecidos, acessórios e detalhes">
+          </label>
+        </div>
+        <label>Tatuagens
+          <select id="tattoos">
+            <option value="no visible tattoos">Sem tatuagens visíveis</option>
+            <option value="realistic tattoos on the arms and forearms">Braços e antebraços</option>
+            <option value="realistic tattoos on the neck and hands">Pescoço e mãos</option>
+            <option value="realistic tattoos on the chest and back">Peito e costas</option>
+            <option value="realistic tattoos on the legs">Pernas</option>
+            <option value="multiple realistic tattoos across selected body areas">Várias regiões</option>
+            <option value="custom tattoo design described by the user">Tatuagem personalizada</option>
+          </select>
+        </label>
+        <div class="field-grid">
+          <label>Estilo da tatuagem
+            <select id="tattooStyle">
+              <option value="realistic black and grey tattoo style">Realista preto e cinza</option>
+              <option value="blackwork tattoo style">Blackwork</option>
+              <option value="tribal tattoo style">Tribal</option>
+              <option value="old school tattoo style">Old school</option>
+              <option value="oriental tattoo style">Oriental</option>
+              <option value="fine-line lettering tattoo style">Escrita / fine line</option>
+            </select>
+          </label>
+          <label>Texto da tatuagem (opcional)
+            <input id="tattooText" type="text" placeholder="Ex.: Malu">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="number">04</span><div><h3>Acessórios</h3><p>Pequenos detalhes que fazem diferença.</p></div></div>
+        <div class="field-grid">
+          <label>Colar / cordão
+            <select id="necklace">
+              <option value="no necklace">Sem colar</option>
+              <option value="thin silver chain necklace">Corrente fina de prata</option>
+              <option value="thick silver chain necklace">Corrente grossa de prata</option>
+              <option value="gold chain necklace">Corrente de ouro</option>
+              <option value="gold chain with a cross pendant">Ouro com pingente de cruz</option>
+              <option value="silver chain with a cross pendant">Prata com pingente de cruz</option>
+              <option value="necklace with a heart pendant">Pingente de coração</option>
+              <option value="personalized name necklace">Colar com nome personalizado</option>
+              <option value="simple child-appropriate necklace">Colar infantil discreto</option>
+            </select>
+          </label>
+          <label>Relógio
+            <select id="watch">
+              <option value="no watch">Sem relógio</option>
+              <option value="luxury silver wristwatch">Relógio de luxo prateado</option>
+              <option value="luxury gold wristwatch">Relógio de luxo dourado</option>
+              <option value="black luxury wristwatch">Relógio preto elegante</option>
+              <option value="sport smartwatch">Relógio esportivo / smartwatch</option>
+              <option value="colorful child-friendly digital watch">Relógio digital infantil</option>
+            </select>
+          </label>
+          <label>Outros acessórios
+            <select id="accessories">
+              <option value="no additional accessories">Nenhum</option>
+              <option value="subtle rings and bracelets">Anéis e pulseiras</option>
+              <option value="earrings and subtle piercings">Brincos e piercings discretos</option>
+              <option value="sunglasses">Óculos escuros</option>
+              <option value="backwards cap">Boné para trás</option>
+              <option value="stylish hat and sunglasses">Chapéu e óculos</option>
+              <option value="handbag or shoulder bag">Bolsa</option>
+              <option value="age-appropriate backpack and playful accessories">Mochila / acessórios infantis</option>
+              <option value="a teddy bear or age-appropriate toy">Ursinho ou brinquedo</option>
+            </select>
+          </label>
+          <label>Detalhes adicionais
+            <input id="accessoryDetails" type="text" placeholder="Ex.: pulseira com nome, anel prateado">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="number">05</span><div><h3>Cenário, pose e iluminação</h3><p>Defina o clima da fotografia.</p></div></div>
+        <div class="field-grid">
+          <label>Cenário
+            <select id="scene">
+              <option value="a stylish urban street at night">Rua urbana à noite</option>
+              <option value="a luxury gala with elegant guests and warm lights">Festa de gala</option>
+              <option value="a lively nightclub with atmospheric lights">Boate / balada movimentada</option>
+              <option value="a birthday party with tasteful decorations">Festa de aniversário</option>
+              <option value="a wedding celebration">Casamento</option>
+              <option value="a Halloween party with dramatic decorations">Festa de Halloween</option>
+              <option value="a pool party in a beautiful outdoor setting">Festa na piscina</option>
+              <option value="a sunny tropical beach">Praia tropical</option>
+              <option value="a modern luxury interior">Interior moderno e luxuoso</option>
+              <option value="a professional photographic studio">Estúdio fotográfico</option>
+              <option value="a cozy home living room">Sala aconchegante de casa</option>
+              <option value="a family-friendly playground">Parquinho infantil</option>
+              <option value="a school environment appropriate for children">Ambiente escolar</option>
+              <option value="a sports stadium with a crowd">Estádio esportivo</option>
+              <option value="a scenic outdoor landscape">Paisagem ao ar livre</option>
+              <option value="a custom location described by the user">Outro cenário (descrever abaixo)</option>
+            </select>
+          </label>
+          <label>Pose
+            <select id="pose">
+              <option value="a natural front-facing portrait looking at the camera">Retrato de frente</option>
+              <option value="a casual selfie taken with the front camera">Selfie frontal</option>
+              <option value="a mirror selfie holding a phone naturally">Selfie no espelho com celular</option>
+              <option value="a full-body mirror photo">Foto de corpo inteiro no espelho</option>
+              <option value="a full-body photograph taken by another person">Foto de corpo inteiro por outra pessoa</option>
+              <option value="a candid photo captured naturally during a party">Foto espontânea na festa</option>
+              <option value="standing confidently with relaxed posture">Em pé, postura confiante</option>
+              <option value="sitting casually in a natural pose">Sentado naturalmente</option>
+              <option value="walking naturally toward the camera">Caminhando em direção à câmera</option>
+              <option value="a couple hugging affectionately">Casal abraçado</option>
+              <option value="a couple sharing a natural romantic kiss">Casal se beijando</option>
+              <option value="a couple holding hands and looking at each other">Casal de mãos dadas</option>
+              <option value="a parent warmly hugging their child">Pai ou mãe abraçando a criança</option>
+              <option value="a parent playing gently with their child">Pai ou mãe brincando com a criança</option>
+              <option value="a family sitting together on a couch">Família reunida no sofá</option>
+              <option value="a cheerful family selfie">Selfie de família</option>
+              <option value="a group of friends posing naturally together">Grupo posando junto</option>
+              <option value="a custom pose described by the user">Outra pose (descrever abaixo)</option>
+            </select>
+          </label>
+          <label>Enquadramento
+            <select id="framing">
+              <option value="close-up portrait">Close no rosto</option>
+              <option value="waist-up portrait">Da cintura para cima</option>
+              <option value="three-quarter body composition">Três quartos do corpo</option>
+              <option value="full-body composition with feet visible">Corpo inteiro com os pés visíveis</option>
+              <option value="wide environmental portrait showing the surroundings">Plano aberto mostrando o cenário</option>
+            </select>
+          </label>
+          <label>Iluminação
+            <select id="lighting">
+              <option value="soft natural window light with gentle shadows">Luz natural suave</option>
+              <option value="cinematic dramatic lighting with controlled shadows">Luz cinematográfica dramática</option>
+              <option value="warm golden event lighting">Luz quente de evento</option>
+              <option value="professional studio softbox lighting">Softbox de estúdio</option>
+              <option value="neon nightclub lighting with realistic reflections">Neon de balada</option>
+              <option value="bright sunny daylight with natural shadows">Luz do sol</option>
+              <option value="moody low-key lighting with detailed highlights">Luz escura com realces</option>
+            </select>
+          </label>
+          <label>Expressão facial
+            <select id="expression">
+              <option value="a natural relaxed expression">Natural e relaxada</option>
+              <option value="a confident subtle smile">Sorriso discreto e confiante</option>
+              <option value="a joyful candid smile">Sorriso espontâneo</option>
+              <option value="a serious intense expression">Séria e intensa</option>
+              <option value="a romantic affectionate expression">Romântica e carinhosa</option>
+              <option value="a playful cheerful expression">Divertida e alegre</option>
+            </select>
+          </label>
+          <label>Outro cenário (opcional)
+            <input id="customScene" type="text" placeholder="Descreva o lugar, decoração, clima...">
+          </label>
+          <label>Outra pose (opcional)
+            <input id="customPose" type="text" placeholder="Descreva a pose ou interação">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="number">06</span><div><h3>Qualidade fotográfica</h3><p>Detalhes técnicos e acabamento realista.</p></div></div>
+        <div class="field-grid">
+          <label>Estilo fotográfico
+            <select id="photoStyle">
+              <option value="ultra-realistic professional photography">Fotografia ultra-realista</option>
+              <option value="luxury editorial fashion photography">Editorial de moda luxuoso</option>
+              <option value="natural smartphone photography with realistic imperfections">Foto natural de celular</option>
+              <option value="cinematic film still photography">Fotografia cinematográfica</option>
+              <option value="professional event photography">Fotografia profissional de eventos</option>
+              <option value="high-end studio portrait photography">Retrato profissional de estúdio</option>
+            </select>
+          </label>
+          <label>Lente / câmera
+            <select id="camera">
+              <option value="85mm portrait lens, shallow depth of field">Lente 85 mm (retrato)</option>
+              <option value="50mm lens, natural perspective">Lente 50 mm (perspectiva natural)</option>
+              <option value="35mm lens, environmental portrait">Lente 35 mm (ambiente)</option>
+              <option value="24mm smartphone camera perspective">Câmera de celular / 24 mm</option>
+              <option value="professional full-frame camera with a 70-200mm lens">Câmera full-frame / 70–200 mm</option>
+            </select>
+          </label>
+          <label>Nível de realismo
+            <select id="realism">
+              <option value="highly photorealistic with natural imperfections">Hiper-realista natural</option>
+              <option value="realistic editorial retouching without over-smoothing">Editorial com retoque leve</option>
+              <option value="raw candid realism, not overly polished">Realismo espontâneo</option>
+              <option value="cinematic photorealism with rich but natural detail">Realismo cinematográfico</option>
+            </select>
+          </label>
+          <label>Detalhes extras (opcional)
+            <input id="extraDetails" type="text" placeholder="Ex.: fumaça leve, chuva, confetes, fundo desfocado">
+          </label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading"><span class="number">07</span><div><h3>Seu prompt em inglês</h3><p>Gere, revise e copie o texto para usar onde preferir.</p></div></div>
+        <div class="button-row">
+          <button class="primary-button" type="submit">✦ Criar prompt detalhado</button>
+          <button class="secondary-button" type="button" id="clearButton">Limpar campos</button>
+        </div>
+        <label for="outputPrompt">Prompt gerado
+          <textarea id="outputPrompt" rows="14" placeholder="Seu prompt em inglês aparecerá aqui..." spellcheck="false"></textarea>
+        </label>
+        <div class="button-row">
+          <button class="primary-button" type="button" id="copyButton">Copiar prompt</button>
+          <span id="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+        <p class="hint">Importante: o PromptAI monta o texto a partir das suas escolhas. Ele não gera a imagem nem verifica automaticamente se o gerador externo reproduziu os rostos, logos ou textos exatamente.</p>
+      </section>
+    </form>
+    <footer><span>PromptAI</span> · Criado para transformar ideias em prompts detalhados.</footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

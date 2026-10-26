@@ -1,0 +1,27 @@
+*{box-sizing:border-box}
+:root{--bg:#080808;--panel:#111111;--panel2:#171717;--gold:#d9ad55;--gold2:#f2d28a;--text:#f6f2e9;--muted:#aaa39a;--line:#35302a}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at top right,#211a0d 0,#080808 36rem);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+.topbar{display:flex;align-items:center;gap:13px;padding:19px max(18px,calc((100% - 940px)/2));border-bottom:1px solid #29231a;background:rgba(8,8,8,.92)}
+.brand-mark{display:grid;place-items:center;width:47px;height:47px;border:1px solid var(--gold);border-radius:14px;color:var(--gold2);font-weight:900;font-size:15px;letter-spacing:-1px}.brand-mark span{color:white}
+.topbar h1{font-size:20px;margin:0;letter-spacing:.4px}.topbar p{font-size:12px;color:var(--muted);margin:1px 0 0}
+.container{max-width:940px;margin:auto;padding:24px 16px 45px}
+.hero{padding:20px 2px 28px}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:800}.hero h2{font-size:clamp(28px,6vw,44px);line-height:1.12;margin:10px 0 14px;max-width:750px}.hero h2 span{color:var(--gold2)}.hero>p:last-child{color:#c1bbb2;max-width:680px;font-size:15px}
+.panel{background:linear-gradient(145deg,#131313,#0e0e0e);border:1px solid var(--line);border-radius:18px;padding:19px;margin:0 0 17px;box-shadow:0 10px 28px #0003}
+.section-heading{display:flex;align-items:center;gap:13px;margin-bottom:19px}.number{flex:0 0 38px;height:38px;display:grid;place-items:center;border-radius:11px;background:#2a2111;color:var(--gold2);font-size:13px;font-weight:900;border:1px solid #554322}.section-heading h3{font-size:18px;margin:0}.section-heading p{margin:3px 0 0;font-size:12px;color:var(--muted)}
+.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-bottom:14px}
+label{display:block;color:#e9e1d4;font-size:13px;font-weight:650;margin:0 0 14px}
+input,select,textarea{display:block;width:100%;margin-top:7px;background:#090909;border:1px solid #403a31;border-radius:10px;padding:12px;color:#f7f1e5;font:inherit;font-size:14px;outline:none;min-width:0}
+select{padding-right:30px}textarea{resize:vertical;line-height:1.55}input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px #d9ad5520}
+input::placeholder,textarea::placeholder{color:#746e66}
+.upload-box{min-height:135px;border:1px dashed #8e713c;border-radius:14px;background:#17130c;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center;cursor:pointer;padding:18px}.upload-box input{max-width:100%;margin-top:12px;border:0;background:transparent;padding:0;font-size:12px}.upload-box strong{color:var(--gold2);font-size:15px}.upload-box span:not(.upload-icon){font-weight:400;color:var(--muted);font-size:12px}.upload-icon{font-size:24px;color:var(--gold)}
+.hint{font-size:11px;color:#a49d93;line-height:1.55;margin:8px 0 15px}
+.preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 18px}
+.preview-card{background:#191919;border:1px solid #3b352b;border-radius:12px;padding:10px;min-width:0}.preview-card img{width:100%;height:160px;object-fit:cover;border-radius:8px;background:#222}.preview-card label{margin:9px 0 0;font-size:12px}.preview-card input{font-size:12px;padding:9px}
+.button-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:12px 0 16px}
+button{font:inherit;font-weight:800;border:0;border-radius:11px;padding:13px 17px;cursor:pointer;min-height:46px}
+.primary-button{background:linear-gradient(135deg,#f2d28a,#c4933d);color:#171109;box-shadow:0 5px 18px #d9ad5520}.primary-button:active{transform:translateY(1px)}
+.secondary-button{background:#24211c;color:#e8d8b7;border:1px solid #51432c}
+#copyStatus{font-size:12px;color:var(--gold2)}
+footer{text-align:center;color:#777067;font-size:12px;padding:18px 0}footer span{color:var(--gold2);font-weight:800}
+@media(max-width:600px){.container{padding:18px 12px 35px}.panel{padding:15px;border-radius:15px}.field-grid{grid-template-columns:1fr;gap:0}.preview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.preview-card img{height:125px}.hero{padding-top:10px}.button-row button{width:100%}.button-row{align-items:stretch}#copyStatus{width:100%}}
